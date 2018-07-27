@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="UTF-8" />
+  	<title>Todos</title>
+	{{ style('https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css') }}
+	<style type="text/css">
+		.todos-container {
+			max-width: 600px;
+		}
+		.item-todo {
+			margin-bottom: 3px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container todos-container" style="margin-top: 50px;">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					<div class="card-body">
+						<form action="{{ route('todos.update', { id: todo.id }) }}" method="POST">
+							{{ csrfField() }}
+							<div class="form-group">
+								<input type="text" class="form-control" name="name" autofocus="" value="{{ todo.name }}">
+								@if(hasErrorFor('name'))
+									<span class="text-danger">
+										{{ getErrorFor('name') }}
+									</span>
+								@endif
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary btn-block">SUBMIT</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+  {{ script('https://code.jquery.com/jquery-3.3.1.slim.min.js') }}
+  {{ script('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js') }}
+  {{ script('https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js') }}
+</body>
+</html>
